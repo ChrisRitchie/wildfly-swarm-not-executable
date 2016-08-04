@@ -1,0 +1,21 @@
+{
+  "name": "xxx",
+  "private": true,
+  "version": "0.0.0",
+  "description": "xxx",
+  "repository": "xxx",
+  "license": "UNLICENCED",
+  "devDependencies": {
+    "bower": "^1.7.7",
+    "http-server": "^0.9.0",
+    "node-sass": "~3.7.0",
+    "nodemon": "~1.9.2",
+    "express": "~4.x"
+  },
+  "scripts": {
+    "build-css": "node-sass src/main/scss/ -o src/main/webapp/css/",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\"",
+    "prestart": "npm install && npm run watch-css &",
+    "start": "node src/main/webapp/server.js"
+  }
+}

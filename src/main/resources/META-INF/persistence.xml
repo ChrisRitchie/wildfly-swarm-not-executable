@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+             http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1">
+
+	<persistence-unit name="unit" transaction-type="JTA">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<jta-data-source>java:jboss/datasources/MyAppDS</jta-data-source>
+        <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
+		<validation-mode>AUTO</validation-mode>
+		
+		<properties>
+			<property name="hibernate.id.new_generator_mappings" value="false" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.format_sql" value="false" />
+			<property name="use_sql_comments" value="false" />
+			<property name="hibernate.cache.use_second_level_cache" value="false"/><!-- change to true -->
+			<property name="hibernate.cache.use_query_cache" value="false" />
+			<property name="hibernate.generate_statistics" value="false" />
+			<!-- <property name="hibernate.hbm2ddl.auto" value="validate" /> -->
+
+			<!-- Hibernate Envers Configuration -->
+			<property name="org.hibernate.envers.use_revision_entity_with_native_id" value="false" />
+			<property name="org.hibernate.envers.audit_table_suffix" value="_audit" />
+			<property name="org.hibernate.envers.revision_field_name" value="revision" />
+			<property name="org.hibernate.envers.revision_type_field_name" value="revision_type"/>
+			<property name="org.hibernate.envers.store_data_at_delete" value="true"/>
+		</properties>
+	</persistence-unit>
+</persistence>

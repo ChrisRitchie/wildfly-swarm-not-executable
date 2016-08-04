@@ -1,0 +1,56 @@
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	version="3.1">
+
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Production</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
+
+	<security-constraint>
+		<display-name>Open Content</display-name>
+		<web-resource-collection>
+			<web-resource-name>Unrestricted Content</web-resource-name>
+			<!-- <url-pattern>/index.html</url-pattern> <url-pattern>/login.html</url-pattern>
+			<url-pattern>/bower_components/**</url-pattern> <url-pattern>/login.html</url-pattern>
+			<url-pattern>/keycloak.json</url-pattern> <url-pattern>/login.html</url-pattern> -->
+			<url-pattern>/*</url-pattern> <url-pattern>/login.html</url-pattern>
+		</web-resource-collection>
+	</security-constraint>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Keycloak</web-resource-name>
+			<url-pattern>/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>keycloak</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<login-config>
+		<auth-method>KEYCLOAK</auth-method>
+		<realm-name>XXX</realm-name>
+	</login-config>
+	<security-role>
+		<role-name>keycloak</role-name>
+	</security-role>
+
+</web-app>

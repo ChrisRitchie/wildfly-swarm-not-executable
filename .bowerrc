@@ -1,0 +1,10 @@
+{
+  "directory": "src/main/webapp/bower_components",
+  "interactive": false,
+  "resolvers": [
+    "bower-npm-resolver"
+  ],
+  "ignoredDependencies": [
+    "Chart.js"
+  ]
+}
